@@ -1,0 +1,40 @@
+[gerrit]
+  basePath = git
+  canonicalWebUrl = http://<%= node['fqdn'] %>:8080/
+[database]
+  type = <%= node['gerrit']['database']['type'] %>
+  database = <%= node['gerrit']['database']['database'] %>
+  <%- if node['gerrit']['database']['type'] == "MYSQL" %>
+  hostname = <%= node['mysql']['bind_address'] %>
+  username = <%= node['gerrit']['username'] %>
+  password = <%= node['gerrit']['db_password'] %>
+  <%- end %>
+[auth]
+  type = <%= node['gerrit']['auth']['type'] %>
+[sendemail]
+  smtpServer = localhost
+[container]
+  user = <%= node['gerrit']['username'] %>
+  javaHome = <%= node['java']['java_home'] %>
+[sshd]
+  listenAddress = <%= node['gerrit']['sshd']['listen_address'] %>
+[httpd]
+  listenUrl = <%= node['gerrit']['httpd']['listen_url'] %>
+[cache]
+  directory = cache
+<%- if node['gerrit']['auth']['type'] == "LDAP" %>
+[ldap]
+  server=<%= node['gerrit']['auth']['ldap']['server'] %>
+  username=<%= node['gerrit']['auth']['ldap']['username'] %>
+  password=<%= node['gerrit']['auth']['ldap']['password'] %>
+  accountBase=<%= node['gerrit']['auth']['ldap']['account_base'] %>
+  accountScope=<%= node['gerrit']['auth']['ldap']['account_scope'] %>
+  accountPattern=<%= node['gerrit']['auth']['ldap']['account_pattern'] %>
+  accountFullName=<%= node['gerrit']['auth']['ldap']['account_fullname'] %>
+  accountEmailAddress=<%= node['gerrit']['auth']['ldap']['account_email_address'] %>
+  groupBase=<%= node['gerrit']['auth']['ldap']['group_base'] %>
+  groupScope=<%= node['gerrit']['auth']['ldap']['group_scope'] %>
+  groupPattern=<%= node['gerrit']['auth']['ldap']['group_pattern'] %>
+  groupMemberPattern=<%= node['gerrit']['auth']['ldap']['group_member_pattern'] %>
+  localUsernameToLowerCase=<%= node['gerrit']['auth']['ldap']['local_username_to_lowercase'] %>
+<% end %>
