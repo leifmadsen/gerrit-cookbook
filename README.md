@@ -24,28 +24,28 @@ Requires Opscode's `java`, `mysql` and `database` cookbooks. See _Attributes_ an
 Attributes
 ==========
 
-# basic options
+-- basic options
 * `node['gerrit']['username']` = 'gerrit2'
 * `node['gerrit']['db_password']` = 'welcome'
 * `node['gerrit']['version']` = '2.5.1'
 
-# main paths
+-- main paths
 * `node['gerrit']['home_dir']` = '/home/gerrit2'
 * `node['gerrit']['base_dir']` = 'review_site'
 
-# default options for gerrit.config
-# -- for internal DB usage
-#`node['gerrit']['database']['type']` = 'H2'
-#`node['gerrit']['database']['database']` = 'db/ReviewDB'
+-- default options for gerrit.config
+-- -- for internal DB usage
+--`node['gerrit']['database']['type']` = 'H2'
+--`node['gerrit']['database']['database']` = 'db/ReviewDB'
 
-# -- for mysql based DB usage
+-- -- for mysql based DB usage
 * `node['gerrit']['database']['type']` = 'MYSQL'
 * `node['gerrit']['database']['database']` = 'reviewdb'
 
-# authentication types and control
+-- authentication types and control
 * `node['gerrit']['auth']['type']` = 'LDAP'
 
-# ldap authentication methods
+-- ldap authentication methods
 * `node['gerrit']['auth']['ldap']['server']` = 'ldap.your_domain.com'
 * `node['gerrit']['auth']['ldap']['username']` = 'cn=Directory Manager,dc=your_domain,dc=com'
 * `node['gerrit']['auth']['ldap']['password']` = 'welcome'
@@ -60,7 +60,7 @@ Attributes
 * `node['gerrit']['auth']['ldap']['group_member_pattern']` = '(uniqueMember=${username})'
 * `node['gerrit']['auth']['ldap']['local_username_to_lowercase']` = true
 
-# listening interfaces
+-- listening interfaces
 * `node['gerrit']['sshd']['listen_address']` = '*:29418'
 * `node['gerrit']['httpd']['listen_url']` = 'http://*:8080/'
 
