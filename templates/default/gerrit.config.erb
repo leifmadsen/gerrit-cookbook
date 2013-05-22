@@ -1,6 +1,6 @@
 [gerrit]
   basePath = git
-  canonicalWebUrl = http://<%= node['fqdn'] %>:8080/
+  canonicalWebUrl = http://<%= node['fqdn'] %>:<%= node['gerrit']['httpd']['listen_port'] %>/
 [database]
   type = <%= node['gerrit']['database']['type'] %>
   database = <%= node['gerrit']['database']['database'] %>
@@ -24,7 +24,7 @@
   directory = cache
 <%- if node['gerrit']['auth']['type'] == "LDAP" %>
 [ldap]
-  server=<%= node['gerrit']['auth']['ldap']['server'] %>
+  server=ldap://<%= node['gerrit']['auth']['ldap']['server'] %>
   username=<%= node['gerrit']['auth']['ldap']['username'] %>
   password=<%= node['gerrit']['auth']['ldap']['password'] %>
   accountBase=<%= node['gerrit']['auth']['ldap']['account_base'] %>

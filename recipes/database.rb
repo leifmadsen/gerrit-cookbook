@@ -16,22 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "mysql"
 include_recipe "mysql::server"
-include_recipe "database"
-
-# install mysql gem
-gem_package "mysql" do
-  action :install
-end
-
-# make sure shadow is available immediately
-ruby_block "require mysql library" do
-  block do
-    Gem.clear_paths  # <-- Necessary to ensure that the new library is found
-    require 'mysql' # <-- gem is 'ruby-shadow', but library is 'shadow'
-  end
-end
+include_recipe "database::mysql"
 
 service "mysqld" do
   supports :restart => true, :start => true, :stop => true, :reload => true
